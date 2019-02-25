@@ -5,7 +5,15 @@ export default {
 
   setupComponent(args, component) {
     component.set('category', args.category);
-    favorites.isFavorite(args.category.id, isFavorite => { component.set('isFavorite', isFavorite); });
+    favorites.isFavorite(args.category.id, isFavorite => {
+      component.set('isFavorite', isFavorite);
+
+      if (isFavorite) {
+        Ember.$('tr[data-category-id="'+ args.category.id +'"]').addClass('green');
+      } else {
+        Ember.$('tr[data-category-id="'+ args.category.id +'"]').removeClass('green');
+      }
+    });
   },
 
   actions: {
