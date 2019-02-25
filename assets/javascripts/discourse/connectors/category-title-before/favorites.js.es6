@@ -10,8 +10,8 @@ export default {
 
   actions: {
     toggleFavorite: function () {
-      console.log(Ember.$('.favorite-icon'));
       const category_id = this.get('category').id;
+      console.log(Ember.$('a[data-category-id="'+ category_id +'"]'));
       const status = !this.get('isFavorite');
       this.set('isFavorite', status);
 
