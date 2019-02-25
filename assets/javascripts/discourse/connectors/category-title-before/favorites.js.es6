@@ -4,14 +4,19 @@ import favorites from 'discourse/plugins/discourse-favorites/lib/favorites';
 export default {
 
   setupComponent(args, component) {
+    console.log($());
+    console.log($().parent());
+
+    console.log(this.$());
+    console.log(this.$().parent());
     component.set('category', args.category);
     favorites.isFavorite(args.category.id, isFavorite => { component.set('isFavorite', isFavorite); });
   },
 
   actions: {
     toggleFavorite: function () {
-      console.log(this.$());
-      console.log(this.$().parent());
+      console.log($());
+      console.log($().parent());
       const category_id = this.get('category').id;
       const status = !this.get('isFavorite');
       this.set('isFavorite', status);
