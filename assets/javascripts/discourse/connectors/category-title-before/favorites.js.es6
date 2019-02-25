@@ -11,7 +11,7 @@ export default {
   actions: {
     toggleFavorite: function () {
       const category_id = this.get('category').id;
-      console.log(Ember.$('a[data-category-id="'+ category_id +'"]'));
+      console.log(Ember.$('tr[data-category-id="'+ category_id +'"]'));
       const status = !this.get('isFavorite');
       this.set('isFavorite', status);
 
