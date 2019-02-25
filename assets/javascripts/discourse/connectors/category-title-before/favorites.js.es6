@@ -10,7 +10,8 @@ export default {
 
   actions: {
     toggleFavorite: function () {
-      console.log("Test");
+      console.log(this.$());
+      console.log(this.$().parent());
       const category_id = this.get('category').id;
       const status = !this.get('isFavorite');
       this.set('isFavorite', status);
