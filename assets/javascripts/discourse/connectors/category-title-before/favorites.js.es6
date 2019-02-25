@@ -11,7 +11,7 @@ export default {
   actions: {
     toggleFavorite: function () {
       const category_id = this.get('category').id;
-      Ember.$('tr[data-category-id="'+ category_id +'"]')[0].addClass('green');
+      Ember.$('tr[data-category-id="'+ category_id +'"]').addClass('green');
       const status = !this.get('isFavorite');
       this.set('isFavorite', status);
 
