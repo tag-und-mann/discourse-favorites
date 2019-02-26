@@ -18,17 +18,18 @@ export default {
 
   actions: {
     toggleFavorite: function () {
-      console.log(this.currentUser);
-      const category_id = this.get('category').id;
-      const status = !this.get('isFavorite');
-      this.set('isFavorite', status);
+      if (this.currentUser.admin ) {
+        const category_id = this.get('category').id;
+        const status = !this.get('isFavorite');
+        this.set('isFavorite', status);
 
-      if (status) {
-        Ember.$('tr[data-category-id="'+ category_id +'"]').addClass('green');
-        favorites.add(category_id);
-      } else {
-        Ember.$('tr[data-category-id="'+ category_id +'"]').removeClass('green');
-        favorites.remove(category_id);
+        if (status) {
+          Ember.$('tr[data-category-id="'+ category_id +'"]').addClass('green');
+          favorites.add(category_id);
+        } else {
+          Ember.$('tr[data-category-id="'+ category_id +'"]').removeClass('green');
+          favorites.remove(category_id);
+        }
       }
     }
   }
