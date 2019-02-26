@@ -26,16 +26,16 @@ after_initialize do
     class << self
 
       def get()
-        PluginStore.get(Favorites::PLUGIN_NAME) || []
+        PluginStore.get(Favorites::PLUGIN_NAME, 'favorites_cats') || []
       end
 
       def set(category_ids)
         category_ids.uniq!
 
         if !category_ids.empty?
-          PluginStore.set(Favorites::PLUGIN_NAME, category_ids)
+          PluginStore.set(Favorites::PLUGIN_NAME, 'favorites_cats', category_ids)
         else
-          PluginStore.remove(Favorites::PLUGIN_NAME)
+          PluginStore.remove(Favorites::PLUGIN_NAME, 'favorites_cats')
         end
 
         category_ids
