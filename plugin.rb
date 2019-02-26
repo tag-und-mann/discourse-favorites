@@ -25,34 +25,34 @@ after_initialize do
   class Favorites::Favorites
     class << self
 
-      def get(user_id)
-        PluginStore.get(Favorites::PLUGIN_NAME, user_id) || []
+      def get()
+        PluginStore.get(Favorites::PLUGIN_NAME) || []
       end
 
-      def set(user_id, category_ids)
+      def set(category_ids)
         category_ids.uniq!
 
         if !category_ids.empty?
-          PluginStore.set(Favorites::PLUGIN_NAME, user_id, category_ids)
+          PluginStore.set(Favorites::PLUGIN_NAME, category_ids)
         else
-          PluginStore.remove(Favorites::PLUGIN_NAME, user_id)
+          PluginStore.remove(Favorites::PLUGIN_NAME)
         end
 
         category_ids
       end
 
-      def add(user_id, category_id)
-        category_ids = get(user_id)
+      def add(category_id)
+        category_ids = get()
         category_ids.push(category_id)
 
-        set(user_id, category_ids)
+        set(category_ids)
       end
 
-      def remove(user_id, category_id)
-        category_ids = get(user_id)
+      def remove(category_id)
+        category_ids = get()
         category_ids.delete(category_id)
 
-        set(user_id, category_ids)
+        set(category_ids)
       end
     end
   end
@@ -64,7 +64,7 @@ after_initialize do
     skip_before_action :check_xhr
 
     def get
-      favorites = Favorites::Favorites.get(current_user.id)
+      favorites = Favorites::Favorites.get()
 
       render json: favorites
     end
@@ -72,21 +72,21 @@ after_initialize do
     def set
       category_ids = params.require(:category_ids)
 
-      favorites = Favorites::Favorites.set(current_user.id, category_ids)
+      favorites = Favorites::Favorites.set(category_ids)
       render json: favorites
     end
 
     def add
       category_id = params.require(:category_id)
 
-      favorites = Favorites::Favorites.add(current_user.id, category_id)
+      favorites = Favorites::Favorites.add(category_id)
       render json: favorites
     end
 
     def remove
       category_id = params.require(:category_id)
 
-      favorites = Favorites::Favorites.remove(current_user.id, category_id)
+      favorites = Favorites::Favorites.remove(category_id)
       render json: favorites
     end
   end
@@ -105,7 +105,7 @@ after_initialize do
         list_opts.merge!(options) if options
         user = list_target_user
 
-        favorites = Favorites::Favorites.get(user.id)
+        favorites = Favorites::Favorites.get()
         list_opts[:exclude_category_ids] = get_excluded_category_ids(favorites)
 
         list = TopicQuery.new(user, list_opts).public_send("list_#{filter}")
