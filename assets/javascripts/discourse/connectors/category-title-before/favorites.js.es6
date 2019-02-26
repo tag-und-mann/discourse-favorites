@@ -18,6 +18,8 @@ export default {
 
   actions: {
     toggleFavorite: function () {
+      const currentUser = container.lookup('current-user:main');
+      console.log(currentUser);
       const category_id = this.get('category').id;
       const status = !this.get('isFavorite');
       this.set('isFavorite', status);
