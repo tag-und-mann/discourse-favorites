@@ -5,9 +5,10 @@ export default {
 
   setupComponent(args, component) {
     component.set('category', args.category);
+    console.log(this.currentUser);
+    console.log(Ember.$('fa-icon'));
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
-
       if (isFavorite) {
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').addClass('green');
       } else {
