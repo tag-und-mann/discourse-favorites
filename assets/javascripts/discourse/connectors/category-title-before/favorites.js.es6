@@ -3,9 +3,11 @@ import favorites from 'discourse/plugins/discourse-favorites/lib/favorites';
 
 export default {
 
+  isAdmin: "",
+
   setupComponent(args, component) {
     component.set('category', args.category);
-
+    component.set('isAdmin', this.currentUser.admin)
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
       if (isFavorite) {
