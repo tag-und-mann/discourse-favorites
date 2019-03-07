@@ -6,15 +6,9 @@ export default {
   setupComponent(args, component) {
     component.set('category', args.category);
 
-    Ember.run.scheduleOnce('afterRender', this, () => {
-      console.log(this.currentUser);
-      console.log(Ember.$('.fa-star'));
-      console.log(this.$('.fa-star'));
-      console.log($('.fa-star'));
-    });
-
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
+      console.log(Ember.$('.fa-star'));
       if (isFavorite) {
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').addClass('green');
       } else {
