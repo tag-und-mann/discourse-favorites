@@ -8,7 +8,6 @@ export default {
 
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
-      console.log(Ember.$('.fa-star'));
       if (isFavorite) {
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').addClass('green');
       } else {

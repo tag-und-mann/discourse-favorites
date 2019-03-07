@@ -51,6 +51,11 @@ export default {
       @computed("allCategoriesUrl", "allCategoriesLabel", "noCategoriesUrl", "noCategoriesLabel")
       collectionHeader(allCategoriesUrl, allCategoriesLabel, noCategoriesUrl, noCategoriesLabel) {
         let ret = this._super(allCategoriesUrl, allCategoriesLabel, noCategoriesUrl, noCategoriesLabel);
+        if (this.currentUser.admin ) {
+          console.log("Yes");
+        } else {
+          console.log("No");
+        }
         if (!this.get("subCategory") && favorites.favorites.size > 0) {
           ret += `
             <a href="/favorites/" class="category-filter">
