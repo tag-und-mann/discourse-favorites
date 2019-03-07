@@ -5,8 +5,14 @@ export default {
 
   setupComponent(args, component) {
     component.set('category', args.category);
-    console.log(this.currentUser);
-    console.log(Ember.$('.fa-star'));
+
+    Ember.run.scheduleOnce('afterRender', this, () => {
+      console.log(this.currentUser);
+      console.log(Ember.$('.fa-star'));
+      console.log(this.$('.fa-star'));
+      console.log($('.fa-star'));
+    });
+
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
       if (isFavorite) {
