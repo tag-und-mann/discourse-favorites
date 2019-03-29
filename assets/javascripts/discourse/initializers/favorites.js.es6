@@ -62,6 +62,13 @@ export default {
       },
 
       computeHeaderContent() {
+        if (!String.prototype.startsWith) {
+          String.prototype.startsWith = function(searchString, position){
+            position = position || 0;
+            return this.substr(position, searchString.length) === searchString;
+          };
+        }
+
         if (!this.get("subCategory")) {
           if (Discourse.__container__.lookup('router:main').get('currentURL').startsWith('/favorites/')) {
             let content = this.baseHeaderComputedContent();
@@ -78,6 +85,13 @@ export default {
      * Overwrite filter URLs from the navigation bar.
      */
     customNavItemHref(function(navItem) {
+      if (!String.prototype.startsWith) {
+        String.prototype.startsWith = function(searchString, position){
+          position = position || 0;
+          return this.substr(position, searchString.length) === searchString;
+        };
+      }
+      
       if (['latest', 'new', 'unread'].includes(navItem.get('name')) && container.lookup('router:main').get('currentURL').startsWith('/favorites/')) {
         return '/favorites/' + navItem.get('name');
       }
