@@ -12,12 +12,12 @@ export default {
       component.set('isFavorite', isFavorite);
       if (isFavorite) {
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').addClass('green');
-        Ember.$('tr[data-category-id="'+ args.category.id +'"]').find('td').each (function( column, td) {
+        Ember.$('tr[data-category-id="'+ args.category.id +'"]').find('td').each(function( column, td) {
               $(td).addStyle('green');
         });
       } else {
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').removeClass('green');
-        Ember.$('tr[data-category-id="'+ args.category.id +'"]').find('td').each (function( column, td) {
+        Ember.$('tr[data-category-id="'+ args.category.id +'"]').find('td').each(function( column, td) {
             $(td).removeStyle('green');
         });
       }
@@ -33,13 +33,13 @@ export default {
 
         if (status) {
           Ember.$('tr[data-category-id="'+ category_id +'"]').addClass('green');
-          Ember.$('tr[data-category-id="'+ category_id +'"]').find('td').each (function( column, td) {
+          Ember.$('tr[data-category-id="'+ category_id +'"]').find('td').each(function( column, td) {
               $(td).addClass('green');
           });
           favorites.add(category_id);
         } else {
           Ember.$('tr[data-category-id="'+ category_id +'"]').removeClass('green');
-          Ember.$('tr[data-category-id="'+ category_id +'"]').find('td').each (function( column, td) {
+          Ember.$('tr[data-category-id="'+ category_id +'"]').find('td').each(function( column, td) {
               $(td).removeClass('green');
           });
           favorites.remove(category_id);
