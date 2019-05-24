@@ -9,7 +9,7 @@ export default {
   /**
    * Array of favorite category IDs.
    *
-   * @type {Set}
+   * @type {Array}
    */
   favorites: [],
 
@@ -35,7 +35,8 @@ export default {
     while (this.callbacks.length > 0) {
       let [categoryId, callback] = this.callbacks.pop();
       if (categoryId !== undefined) {
-        callback(this.favorites.has(categoryId));
+        // callback(this.favorites.has(categoryId));
+        callback(this.favorites.indexOf(categoryId) > -1);
       } else {
         callback(Array.from(this.favorites));
       }
@@ -48,9 +49,8 @@ export default {
    * @param {Array} favorites
    */
   _setFavorites(favorites) {
-    console.log("favorites for set");
-    console.log(favorites.map(num => parseInt(num)));
-    this.favorites = new Set(favorites.map(num => parseInt(num)));
+    // this.favorites = new Set(favorites.map(num => parseInt(num)));
+    this.favorites = favorites.map(num => parseInt(num));
     console.log("Favorites were set after getting from server");
     console.log(this.favorites);
     this.state = LOADED;
