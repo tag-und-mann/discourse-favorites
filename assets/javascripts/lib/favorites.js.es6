@@ -49,7 +49,7 @@ export default {
    */
   _setFavorites(favorites) {
     console.log("favorites for set");
-    console.log(favorites);
+    console.log(favorites.map(num => parseInt(num)));
     this.favorites = new Set(favorites.map(num => parseInt(num)));
     console.log("Favorites were set after getting from server");
     console.log(this.favorites);
@@ -161,9 +161,6 @@ export default {
    *                               available.
    */
   isFavorite(categoryId, callback) {
-    console.log("IsFavorite params:");
-    console.log(categoryId);
-    console.log(callback);
     this.callbacks.push([categoryId, callback]);
     this._getFavorites();
   },

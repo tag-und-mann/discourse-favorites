@@ -6,9 +6,6 @@ export default {
   isAdmin: "",
 
   setupComponent(args, component) {
-    console.log("setup component params");
-    console.log(args);
-    console.log(component);
     component.set('category', args.category);
     component.set('isAdmin', this.currentUser.admin)
     favorites.isFavorite(args.category.id, isFavorite => {
