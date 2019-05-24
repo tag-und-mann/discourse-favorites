@@ -51,8 +51,6 @@ export default {
   _setFavorites(favorites) {
     // this.favorites = new Set(favorites.map(num => parseInt(num)));
     this.favorites = favorites.map(num => parseInt(num));
-    console.log("Favorites were set after getting from server");
-    console.log(this.favorites);
     this.state = LOADED;
     this._fireCallbacks();
   },
