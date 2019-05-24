@@ -75,6 +75,7 @@ export default {
     // in the future.
     this.state = LOADING;
     ajax("/favorites/get").then(result => {
+      console.log(result.favorites);
       this._setFavorites(result.favorites);
     }).catch((err) => {
       console.log("Error loading favorite categories.", err);
