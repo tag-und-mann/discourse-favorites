@@ -10,7 +10,8 @@ export default {
     component.set('isAdmin', this.currentUser.admin)
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
-      console.log('Favorites:');
+      console.log("This element status is:");
+      console.log(isFavorite);
       if (isFavorite) {
         console.log("This element favorite");
         console.log(Ember.$('tr[data-category-id="'+ args.category.id +'"]'));
