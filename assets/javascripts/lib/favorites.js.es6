@@ -48,6 +48,8 @@ export default {
    * @param {Array} favorites
    */
   _setFavorites(favorites) {
+    console.log("favorites for set");
+    console.log(favorites);
     this.favorites = new Set(favorites.map(num => parseInt(num)));
     console.log("Favorites were set after getting from server");
     console.log(this.favorites);
