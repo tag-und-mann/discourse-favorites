@@ -10,10 +10,15 @@ export default {
     component.set('isAdmin', this.currentUser.admin)
     favorites.isFavorite(args.category.id, isFavorite => {
       component.set('isFavorite', isFavorite);
+      console.log('Favorites:');
       if (isFavorite) {
+        console.log("This element favorite");
+        console.log(Ember.$('tr[data-category-id="'+ args.category.id +'"]'));
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').addClass('green');
         Ember.$('tr[data-category-id="'+ args.category.id +'"] td').addClass('green');
       } else {
+        console.log("This element is not favorite");
+        console.log(Ember.$('tr[data-category-id="'+ args.category.id +'"]'));
         Ember.$('tr[data-category-id="'+ args.category.id +'"]').removeClass('green');
         Ember.$('tr[data-category-id="'+ args.category.id +'"] td').removeClass('green');
       }
