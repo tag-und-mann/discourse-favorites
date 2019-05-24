@@ -49,6 +49,8 @@ export default {
    */
   _setFavorites(favorites) {
     this.favorites = new Set(favorites.map(num => parseInt(num)));
+    console.log("Favorites were set after getting from server");
+    console.log(this.favorites);
     this.state = LOADED;
     this._fireCallbacks();
   },
@@ -75,7 +77,6 @@ export default {
     // in the future.
     this.state = LOADING;
     ajax("/favorites/get").then(result => {
-      console.log(result.favorites);
       this._setFavorites(result.favorites);
     }).catch((err) => {
       console.log("Error loading favorite categories.", err);
@@ -158,6 +159,9 @@ export default {
    *                               available.
    */
   isFavorite(categoryId, callback) {
+    console.log("IsFavorite params:");
+    console.log(categoryId);
+    console.log(callback);
     this.callbacks.push([categoryId, callback]);
     this._getFavorites();
   },
